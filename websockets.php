@@ -116,8 +116,8 @@ abstract class WebSocketServer {
               case 113: // EHOSTUNREACH -- No route to host
               case 121: // EREMOTEIO    -- Rempte I/O error -- Their hard drive just blew up.
               case 125: // ECANCELED    -- Operation canceled
-                
-                $this->stderr("Unusual disconnect on socket " . $socket);
+                socket_getpeername($socket,$addr, $port);
+                $this->stderr("Unusual disconnect on socket " . $addr . ':' . $port );
                 $this->disconnect($socket, true, $sockErrNo); // disconnect before clearing error, in case someone with their own implementation wants to check for error conditions on the socket.
                 break;
               default:
