@@ -96,7 +96,8 @@ abstract class WebSocketServer {
           } 
           else {
             $this->connect($client);
-            $this->stdout("Client connected. " . $client);
+            socket_getpeername($client,$addr, $port);
+            $this->stdout("Client connected. " . $addr . ':' . $port);
           }
         } 
         else {
