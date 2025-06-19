@@ -23,8 +23,8 @@ abstract class WebSocketServer {
     socket_bind($this->master, $addr, $port)                      or die("Failed: socket_bind()");
     socket_listen($this->master,20)                               or die("Failed: socket_listen()");
     $this->sockets['m'] = $this->master;
-    socket_getsockname($this->master, $addr);
-    $this->stdout("Server started\nListening on: " . $addr);
+    socket_getsockname($this->master, $addr, $port);
+    $this->stdout("Server started\nListening on: " . $addr . ":" . $port . "\n");
     
   }
 
