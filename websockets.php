@@ -128,7 +128,8 @@ abstract class WebSocketServer {
           }
           elseif ($numBytes == 0) {
             $this->disconnect($socket);
-            $this->stderr("Client disconnected. TCP connection lost: " . $socket);
+            socket_getpeername($socket, $addr, $port);
+            $this->stderr("Client disconnected. TCP connection lost: " . $addr . ':' . $port);
           } 
           else {
             $user = $this->getUserBySocket($socket);
