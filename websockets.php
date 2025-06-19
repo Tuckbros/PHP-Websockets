@@ -171,7 +171,8 @@ abstract class WebSocketServer {
       }
 
       if ($triggerClosed) {
-        $this->stdout("Client disconnected. ".$disconnectedUser->socket);
+        socket_getpeername($disconnectedUser->socket, $addr, $port);
+        $this->stdout("Client disconnected. ". $addr . ':' . $port);
         $this->closed($disconnectedUser);
         socket_close($disconnectedUser->socket);
       }
