@@ -40,6 +40,7 @@ abstract class WebSocketServer {
   protected function send($user, $message) {
     if ($user->handshake) {
       $message = $this->frame($message,$user);
+      $this->stdout("$message\n");
       $result = @socket_write($user->socket, $message, strlen($message));
     }
     else {
